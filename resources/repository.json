@@ -1,6 +1,6 @@
 [
   {
-    "id": "repository.jacktorr",
+    "id": "repository.jackewlarr",
     "username": "Sam-Max",
     "assets": {
       "zip": "https://github.com/{username}/{repository}/archive/v{version}.zip"
@@ -14,7 +14,7 @@
     }
   },
   {
-    "id": "plugin.video.jacktorr",
+    "id": "plugin.video.jackewlarr",
     "username": "Sam-Max",
     "assets": {
       "zip": "https://github.com/{username}/{repository}/releases/download/v{version}/{id}-{version}.zip"    

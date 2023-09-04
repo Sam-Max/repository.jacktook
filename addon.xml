@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<addon id="repository.jacktorr" name="Jacktorr Add-on repository" provider-name="Sam-Max" version="0.0.2">
+<addon id="repository.jackewlarr" name="Jacktorr Add-on repository" provider-name="Sam-Max" version="0.0.3">
     <requires>
         <!--<import addon="xbmc.python" version="3.0.0"/>-->
     </requires>
@@ -14,8 +14,8 @@
     <extension point="xbmc.service" library="service.py"/>
     <extension point="xbmc.addon.metadata">
         <platform>all</platform>
-        <license>See https://github.com/Sam-Max/repository.jacktorr/blob/master/LICENSE</license>
-        <source>https://github.com/Sam-Max/repository.jacktorr</source>
+        <license>See https://github.com/Sam-Max/repository.jackewlarr/blob/master/LICENSE</license>
+        <source>https://github.com/Sam-Max/repository.jackewlarr</source>
         <summary lang="en">GitHub virtual Add-on repository</summary>
         <description lang="en">Customizable repository which acts as a proxy for defined GitHub users' add-ons updates.</description>
         <assets>

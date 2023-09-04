@@ -1,7 +1,7 @@
 # Kodi Media Center language file
-# Addon Name: i96751414 Repository
-# Addon id: repository.jacktorr
-# Addon Provider: i96751414
+# Addon Name: Sam-Max Repository
+# Addon id: repository.jackewlarr
+# Addon Provider: Sam-Max
 #
 msgid ""
 msgstr ""
