@@ -1,6 +1,6 @@
 [
   {
-    "id": "repository.jackewlarr",
+    "id": "repository.jacktook",
     "username": "Sam-Max",
     "assets": {
       "zip": "https://github.com/{username}/{repository}/archive/v{version}.zip"
@@ -14,7 +14,7 @@
     }
   },
   {
-    "id": "plugin.video.jackewlarr",
+    "id": "plugin.video.jacktook",
     "username": "Sam-Max",
     "assets": {
       "zip": "https://github.com/{username}/{repository}/releases/download/v{version}/{id}-{version}.zip"    

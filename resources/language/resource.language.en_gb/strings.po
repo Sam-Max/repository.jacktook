@@ -1,6 +1,6 @@
 # Kodi Media Center language file
 # Addon Name: Sam-Max Repository
-# Addon id: repository.jackewlarr
+# Addon id: repository.jacktook
 # Addon Provider: Sam-Max
 #
 msgid ""
