@@ -1,4 +1,4 @@
-# Kodi Repository for Jacktook
+# Kodi Repository for [Jacktook](https://github.com/Sam-Max/plugin.video.jacktook)
 
 
 ## Installation
