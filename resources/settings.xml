@@ -4,5 +4,8 @@
     <category label="30000">
         <setting id="repository_port" type="number" label="30001" default="61236"/>
         <setting label="30005" type="action" action="RunScript(repository.jacktook, update_repository)"/>
+        <setting label="30002" type="action" action="RunScript(repository.jacktook, import_entries)"/>
+        <setting label="30003" type="action" action="RunScript(repository.jacktook, delete_entries)"/>
+        <setting label="30004" type="action" action="RunScript(repository.jacktook, clear_entries)"/>
     </category>
 </settings>
