@@ -1,0 +1,23 @@
+[
+  {
+    "id": "repository.jacktook",
+    "username": "Sam-Max",
+    "assets": {
+      "zip": "https://github.com/{username}/{repository}/archive/v{version}.zip"
+    }
+  },
+  {
+    "id": "script.module.requests",
+    "username": "Sam-Max",
+    "assets": {
+      "zip": "https://github.com/{username}/{repository}/archive/v{version}.zip"
+    }
+  },
+  {
+    "id": "plugin.video.jacktook",
+    "username": "Sam-Max",
+    "assets": {
+      "zip": "https://github.com/{username}/{repository}/releases/download/v{version}/{id}-{version}.zip"    
+    }
+  }
+]
