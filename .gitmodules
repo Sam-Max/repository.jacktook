@@ -4,3 +4,9 @@
 [submodule "repo/repository.jacktook/script.module.requests"]
 	path = repo/repository.jacktook/script.module.requests
 	url = https://github.com/Sam-Max/script.module.requests
+[submodule "repo/plugin.video.jacktorr"]
+	path = repo/plugin.video.jacktorr
+	url = https://github.com/Sam-Max/plugin.video.jacktorr
+[submodule "repo/script.jacktook.burst"]
+	path = repo/script.jacktook.burst
+	url = https://github.com/Sam-Max/script.jacktook.burst
