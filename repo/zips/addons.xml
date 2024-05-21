@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='utf-8'?>
+<addons><addon id="plugin.video.jacktook" name="Jacktook" version="0.2.5" provider-name="Sam-Max">
+  <requires>
+    <import addon="xbmc.python" version="3.00.0" />
+    <import addon="script.module.requests" version="2.25.1" />
+    <import addon="script.module.routing" version="0.2.3" />
+    <import addon="script.otaku.mappings" />
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="jacktook.py">
+    <provides>video</provides>
+  </extension>
+  <extension point="xbmc.python.module" library="lib/api" />
+  <extension point="xbmc.python.module" library="lib/bencodepy" />
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en">jacktook</summary>
+    <description lang="en">Kodi addon for torrent streaming</description>
+    <license>GPL-2.0-only</license>
+    <source>https://github.com/Sam-Max/plugin.video.jacktook</source>
+    <assets>
+      <icon>icon.png</icon>
+      <fanart>fanart.png</fanart>
+      <screenshot>resources/screenshots/home.png</screenshot>
+      <screenshot>resources/screenshots/tv.png</screenshot>
+    </assets>
+ </extension>
+</addon><addon id="repository.jacktook" name="Jacktook Add-on Repository" version="0.0.5" provider-name="Sam-Max">
+<extension point="xbmc.addon.repository" name="Jacktook Add-on Repository">
+<dir>
+<info compressed="false">https://raw.githubusercontent.com/Sam-Max/repository.jacktook/master/repo/zips/addons.xml</info>
+<checksum>https://raw.githubusercontent.com/Sam-Max/repository.jacktook/master/repo/zips/addons.xml.md5</checksum>
+<datadir zip="true">https://raw.githubusercontent.com/Sam-Max/repository.jacktook/master/repo/zips/</datadir>
+</dir>
+</extension>
+<extension point="xbmc.addon.metadata">
+<summary>Jacktook Add-on Repository</summary>
+<description>Jacktook Repository for Jacktook Addon</description>
+<disclaimer />
+<platform>all</platform>
+<assets>
+<icon>icon.png</icon>
+<fanart>fanart.jpg</fanart>
+</assets>
+</extension>
+</addon><addon id="script.module.requests" name="requests" version="2.25.1+matrix.1" provider-name="Python Software Foundation">
+  <requires>
+    <import addon="xbmc.python" version="3.0.0" />
+    <import addon="script.module.certifi" version="2020.12.05+matrix.1" />
+    <import addon="script.module.chardet" version="4.0.0+matrix.1" />
+    <import addon="script.module.idna" version="2.10.0+matrix.1" />
+    <import addon="script.module.urllib3" version="1.26.4+matrix.1" />
+  </requires>
+  <extension point="xbmc.python.module" library="lib" />
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en_GB">Requests is an elegant and simple HTTP library for Python, built for human beings.</summary>
+    <description lang="en_GB">Requests is an elegant and simple HTTP library for Python, built for human beings.</description>
+    <license>Apache-2.0</license>
+    <platform>all</platform>
+    <website>https://requests.readthedocs.io/</website>
+    <source>https://github.com/psf/requests</source>
+    <assets>
+      <icon>resources/icon.png</icon>
+    </assets>
+  </extension>
+</addon><addon id="script.otaku.mappings" version="24.05.02" name="Otaku Mappings" provider-name="TeamOtaku">
+    <extension point="xbmc.python.module" library="lib" />
+	<extension point="xbmc.addon.metadata">
+        <summary>Anime ID Mappings for Otaku Addon</summary>
+        <description>Mappings for Otaku are maintained separately to make distribution of the the addon itself easier/faster.</description>
+        <platform>all</platform>
+        <license>GPL-2.0</license>
+        <assets>
+            <icon>icon.png</icon>
+            <fanart>fanart.jpg</fanart>
+            <clearlogo>logo.png</clearlogo>
+            <poster>poster.png</poster>
+        </assets>
+    </extension>
+</addon></addons>
