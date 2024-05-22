@@ -1,8 +1,8 @@
-[submodule "repo/repository.jacktook/plugin.video.jacktook"]
-	path = repo/repository.jacktook/plugin.video.jacktook
+[submodule "repo/plugin.video.jacktook"]
+	path = repo/plugin.video.jacktook
 	url = https://github.com/Sam-Max/plugin.video.jacktook
-[submodule "repo/repository.jacktook/script.module.requests"]
-	path = repo/repository.jacktook/script.module.requests
+[submodule "repo/script.module.requests"]
+	path = repo/script.module.requests
 	url = https://github.com/Sam-Max/script.module.requests
 [submodule "repo/plugin.video.jacktorr"]
 	path = repo/plugin.video.jacktorr
