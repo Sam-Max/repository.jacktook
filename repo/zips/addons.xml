@@ -24,7 +24,7 @@
       <screenshot>resources/screenshots/tv.png</screenshot>
     </assets>
  </extension>
-</addon><addon id="plugin.video.jacktorr" name="JackTorr" provider-name="Sam-Max" version="0.0.1">
+</addon><addon id="plugin.video.jacktorr" name="JackTorr" provider-name="Sam-Max" version="0.0.2">
     <requires>
         <import addon="script.module.requests" version="2.22.0" />
         <import addon="script.module.routing" version="0.2.3" />
