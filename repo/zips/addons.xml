@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<addons><addon id="plugin.video.jacktook" name="Jacktook" version="0.5.3" provider-name="Sam-Max">
+<addons><addon id="plugin.video.jacktook" name="Jacktook" version="0.5.4" provider-name="Sam-Max">
   <requires>
     <import addon="xbmc.python" version="3.00.0" />
     <import addon="script.module.requests" version="2.25.1" />
@@ -9,6 +9,7 @@
     <provides>video</provides>
   </extension>
   <extension point="xbmc.service" library="service.py" />
+  <extension point="xbmc.python.module" library="lib" />
   <extension point="xbmc.addon.metadata">
     <summary lang="en">jacktook</summary>
     <description lang="en">Kodi addon for torrent streaming</description>
@@ -60,7 +61,7 @@
 <fanart>fanart.jpg</fanart>
 </assets>
 </extension>
-</addon><addon id="script.jacktook.burst" name="Jacktook [COLOR FFFF6B00]Burst[/COLOR]" version="0.0.90" provider-name="Sam-Max">
+</addon><addon id="script.jacktook.burst" name="Jacktook [COLOR FFFF6B00]Burst[/COLOR]" version="0.0.91" provider-name="Sam-Max">
     <requires>
         <import addon="xbmc.addon" version="16.0.0" />
         <import addon="plugin.video.jacktook" optional="true" />
