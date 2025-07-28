@@ -1,6 +1,6 @@
+## Jacktook Repository
 
-## Jacktook Repository URL
+## Repository URL
 
-Use the link: [sam-max.github.io](https://sam-max.github.io/repository.jacktook)
-
+Access the project at: [sam-max.github.io](https://sam-max.github.io/repository.jacktook)
 
