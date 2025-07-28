@@ -1,12 +1,19 @@
-[submodule "repo/plugin.video.jacktorr"]
-	path = repo/plugin.video.jacktorr
-	url = https://github.com/Sam-Max/plugin.video.jacktorr
-[submodule "repo/script.jacktook.burst"]
-	path = repo/script.jacktook.burst
-	url = https://github.com/Sam-Max/script.jacktook.burst
 [submodule "repo/plugin.video.jacktook"]
 	path = repo/plugin.video.jacktook
 	url = https://github.com/Sam-Max/plugin.video.jacktook
+[submodule "repo/plugin.video.jacktorr"]
+	path = repo/plugin.video.jacktorr
+	url = https://github.com/Sam-Max/plugin.video.jacktorr
+[submodule "repo/plugin.module.torrest"]
+	path = repo/plugin.module.torrest
+	url = https://github.com/i96751414/plugin.video.torrest
+[submodule "repo/plugin.module.elementum"]
+	path = repo/plugin.module.elementum
+	url = https://github.com/elgatito/plugin.video.elementum
+[submodule "repo/script.jacktook.burst"]
+	path = repo/script.jacktook.burst
+	url = https://github.com/Sam-Max/script.jacktook.burst
 [submodule "repo/script.module.requests"]
 	path = repo/script.module.requests
 	url = https://github.com/Sam-Max/script.module.requests
+
