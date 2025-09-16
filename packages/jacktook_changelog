@@ -1,3 +1,10 @@
+## 0.14.0
+- Updated menu icons for Telegram and Downloads.
+- Added filtering options setting for quality/source.
+- Improved initialization and handling of invalid tokens on Real Debrid
+- Simplified addon display name in jacktook.select.json.
+- Other minor improvements.
+
 ## 0.13.0 
 - Added support for [MDBList](https://mdblist.com/)
 - Added people category for movies and TV shows.
