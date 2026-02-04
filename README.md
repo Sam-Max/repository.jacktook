@@ -1,4 +1,4 @@
-# <img src="repo/plugin.video.jacktook/icon.png" width="48" height="48"> Jacktook Repository
+# Jacktook Repository
 
 [![Kodi Version](https://img.shields.io/badge/Kodi-20+-blue.svg)](https://kodi.tv)
 [![License](https://img.shields.io/badge/License-GPL--2.0-green.svg)](https://github.com/Sam-Max/repository.jacktook/blob/master/LICENSE)
@@ -54,4 +54,4 @@ If you enjoy using Jacktook and would like to support its development, you can b
 
 ## ⚖️ Disclaimer
 
-This repository and its contents are for educational purposes only. The developers are not responsible for how users choose to use these tools. Use at your own risk.
+The developers are not responsible for any misuse of the add-on. Please ensure you comply with all local laws and regulations regarding content streaming and downloading.
