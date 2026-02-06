@@ -42,7 +42,7 @@
             <screenshot>resources/screenshots/webui.png</screenshot>
         </assets>
     </extension>
-</addon><addon id="plugin.video.jacktook" name="Jacktook" version="0.23.0" provider-name="Sam-Max">
+</addon><addon id="plugin.video.jacktook" name="Jacktook" version="0.24.0" provider-name="Sam-Max">
   <requires>
     <import addon="xbmc.python" version="3.00.0" />
     <import addon="script.module.requests" version="2.25.1" />
@@ -65,7 +65,7 @@
       <screenshot>resources/screenshots/tv.png</screenshot>
     </assets>
  </extension>
-</addon><addon id="plugin.video.jacktorr" name="JackTorr" provider-name="Sam-Max" version="0.0.2">
+</addon><addon id="plugin.video.jacktorr" name="JackTorr" provider-name="Sam-Max" version="1.0.0">
     <requires>
         <import addon="script.module.requests" version="2.22.0" />
         <import addon="script.module.routing" version="0.2.3" />
@@ -116,7 +116,7 @@
         </assets>
         <reuselanguageinvoker>true</reuselanguageinvoker>
     </extension>
-</addon><addon id="script.jacktook.burst" name="Jacktook [COLOR FFFF6B00]Burst[/COLOR]" version="0.0.91" provider-name="Sam-Max">
+</addon><addon id="script.jacktook.burst" name="Jacktook [COLOR FFFF6B00]Burst[/COLOR]" version="0.0.92" provider-name="Sam-Max">
     <requires>
         <import addon="xbmc.addon" version="16.0.0" />
         <import addon="plugin.video.jacktook" optional="true" />
