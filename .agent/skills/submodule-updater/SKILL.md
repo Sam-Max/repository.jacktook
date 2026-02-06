@@ -1,6 +1,6 @@
 ---
 name: submodule-updater
-description: Update Jacktook repository submodules and regenerate the Kodi repository index.
+description: Update Jacktook repository submodules and regenerate the Kodi repository index. Triggered when the user requests to update the repository.
 ---
 
 # Submodule Updater Skill
