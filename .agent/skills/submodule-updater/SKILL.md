@@ -17,7 +17,7 @@ git submodule update --remote <submodule_path>
 *Note: If local changes cause conflicts, you may need to enter the submodule and run `git reset --hard origin/main`.*
 
 ### 2. Verify Version and Changelog
-Ensure the repository's metadata files match the updated submodule version.
+Ensure the repository's metadata files match the updated submodule version. Append the new changelog to the `packages/jacktook_changelog` file, but do not overwrite the existing content.
 - Check `packages/jacktook_version`
 - Check `packages/jacktook_changelog`
 
