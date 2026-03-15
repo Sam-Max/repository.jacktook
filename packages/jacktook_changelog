@@ -1,3 +1,23 @@
+## 1.5.0
+- Trakt Expansion: Added personal lists, search lists by keyword, create custom lists, favorites, account info.
+- Enhanced Trakt Sync: Improved scrobbling, progress tracking, and added periodic syncing service.
+- Added backup/reset tool for addon settings.
+- Modernized routing, provider registries, and service-based auth flows.
+- Fix Update flow that was partially broken cause of using incorrect addon identifier.
+- Improved scrobbler notifications and calendar item rendering.
+- Aligned logging with Kodi levels.
+- Other minor improvements.
+
+Spanish:
+- Expansión de Trakt: Añadidas listas personales, búsqueda de listas por palabra clave, creación de listas personalizadas, favoritos, información de la cuenta.
+- Sincronización mejorada de Trakt: Mejor scrobbling, seguimiento del progreso y servicio de sincronización periódica añadido.
+- Añadida herramienta de respaldo/restablecimiento de los ajustes del addon.
+- Modernizado el enrutamiento, los registros de proveedores y los flujos de autenticación basados en servicios.
+- Corregido el flujo de actualización que estaba parcialmente roto debido al uso de un identificador del addon incorrecto.
+- Mejoradas las notificaciones del scrobbler y la representación de los elementos del calendario.
+- Alineado el registro con los niveles de Kodi.
+- Otras mejoras menores.
+
 ## 1.4.4
 - Real-Debrid: Fix multi-file movie torrents by selecting the largest playable file
 - Split subtitle feedback so missing subtitles and unselected subtitles show different messages.
