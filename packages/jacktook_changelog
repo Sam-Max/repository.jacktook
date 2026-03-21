@@ -1,3 +1,15 @@
+## 1.6.0
+- Search: Add English title fallback for Jackett and Prowlarr.
+- Search: Fix result sorting across sort modes.
+- Playback: Handle magnet redirects and torrent URLs returned by indexers.
+- UI: Remove peers count and hide seeders for cached items when not needed.
+
+Spanish:
+- Busqueda: Anadido fallback al titulo en ingles para Jackett y Prowlarr.
+- Busqueda: Corregida la ordenacion de resultados en todos los modos de orden.
+- Reproduccion: Manejo de redirecciones magnet y URLs de torrents devueltas por indexadores.
+- UI: Eliminado el conteo de peers y ocultados los seeders para elementos en cache cuando no son necesarios.
+
 ## 1.5.3
 - Trakt: Add 'Continue Watching' option for movies to easily resume playback.
 - Trakt: Fix Unprocessable Entity (422) error when scrobbling items with no playback progress.
@@ -731,6 +743,5 @@ Note: If you enjoy this addon, please consider supporting the project with a don
     *  Torrest Integration
 
     *  TMDB Integration
-
 
 
