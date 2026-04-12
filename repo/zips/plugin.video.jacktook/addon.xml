@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<addon id="plugin.video.jacktook" name="Jacktook" version="1.7.2" provider-name="Sam-Max">
+<addon id="plugin.video.jacktook" name="Jacktook" version="1.8.0" provider-name="Sam-Max">
   <requires>
     <import addon="xbmc.python" version="3.00.0"/>
     <import addon="script.module.requests" version="2.25.1"/>
@@ -11,6 +11,7 @@
   <extension point="xbmc.service" library="service.py" />
   <extension point="xbmc.python.module" library="lib"/>
   <extension point="xbmc.addon.metadata">
+    <reuselanguageinvoker>true</reuselanguageinvoker>
     <summary lang="en">jacktook</summary>
     <description lang="en">Kodi addon for torrent streaming</description>
     <license>GPL-2.0-only</license>
