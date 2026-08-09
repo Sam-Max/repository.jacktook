@@ -1,8 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
-<addons><addon id="plugin.video.elementum" name="Elementum" version="0.1.113" provider-name="elgatito">
+<addons><addon id="plugin.video.elementum" name="Elementum" version="0.1.114" provider-name="elgatito">
     <requires>
         <import addon="xbmc.addon" version="16.0.0" />
-        <import addon="repository.elementumorg" optional="true" />
         <import addon="script.module.kodi-six" />
         <import addon="script.module.requests" version="2.9.1" />
     </requires>
