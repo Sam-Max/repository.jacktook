@@ -1,39 +1,43 @@
 ---
 name: submodule-updater
-description: Update Jacktook repository submodules and regenerate the Kodi repository index. Triggered when the user requests to update the repository.
+description: "Trigger: update repository, update submodule, refresh addons. Update one or all Jacktook submodules and regenerate repository artifacts."
+license: Apache-2.0
+metadata:
+  author: sammax
+  version: "1.0"
 ---
 
-# Submodule Updater Skill
+## Activation Contract
 
-This skill provides a standardized workflow for updating Jacktook submodules (like `plugin.video.jacktook`) and synchronizing the Kodi repository.
+Load when the user requests a repository or submodule update. Support an explicitly named submodule and an all-submodule update.
 
-## Workflow
+## Hard Rules
 
-### 1. Update the Submodule
-Navigate to the submodule directory and fetch the latest changes.
-```bash
-git submodule update --remote <submodule_path>
-```
-*Note: If local changes cause conflicts, you may need to enter the submodule and run `git reset --hard origin/main`.*
+- Run commands from the repository root using root-relative paths.
+- Never reset, checkout, stash, or otherwise discard local submodule changes. If they block the update, report the conflict and stop.
+- Preserve unrelated working-tree and staging changes. Do not commit unless the user explicitly requests it.
 
-### 2. Verify Version and Changelog
-Ensure the repository's metadata files match the updated submodule version. Append the new changelog to the `packages/jacktook_changelog` file, but do not overwrite the existing content.
-- Check `packages/jacktook_version`
-- Check `packages/jacktook_changelog`
+## Decision Gates
 
-### 3. Regenerate Repository Index
-Run the repository generator script to update `addons.xml`, MD5 hashes, and create new ZIP packages.
-```bash
-python3 _repo_generator.py
-```
+| Request | Update command |
+| --- | --- |
+| No submodule target | `git submodule update --remote --recursive` |
+| Specific `<submodule_path>` | `git submodule update --remote <submodule_path>` |
 
-### 4. Stage Changes
-Stage the updated submodule pointer, the generated ZIPs, and the updated index files.
-```bash
-git add repo/<submodule_name> repo/zips/ packages/jacktook_changelog packages/jacktook_version
-```
+## Execution Steps
 
-## Important Considerations
-- **No Path Changes**: Always use absolute paths or paths relative to the repository root.
-- **Clean Slate**: Ensure the submodule is on the correct branch (usually `main`) before regenerating the index.
-- **Manual Commits**: Review the staged changes before committing, as per the user's preference for manual commits.
+1. Inspect `git status --short` and `git submodule status --recursive` before updating.
+2. Run the command selected above. Verify the changed submodule pointers afterward.
+3. Check `packages/jacktook_version` and append, never replace, the appropriate changelog entry in `packages/jacktook_changelog` for each updated add-on.
+4. Run `python3 _repo_generator.py` to refresh repository indexes, hashes, and ZIP packages.
+5. Stage only the updated submodule pointer or pointers, generated artifacts, and relevant metadata. For an all-submodule update, use every changed submodule path rather than one hard-coded path. Review staged changes; leave committing to the user.
+
+## Output Contract
+
+Return the update scope, changed submodule paths, generated artifacts, staging status, and any local-change blocker. State that no commit was created.
+
+## References
+
+- `_repo_generator.py` — generates repository indexes and ZIP packages.
+- `packages/jacktook_version` — repository version metadata.
+- `packages/jacktook_changelog` — append-only changelog metadata.
