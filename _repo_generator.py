@@ -5,15 +5,25 @@
 """
 
 import hashlib
+import io
 import os
 import shutil
 import sys
+import urllib.request
 import zipfile
 
 from xml.etree import ElementTree
 
 SCRIPT_VERSION = 5
 KODI_VERSIONS = ["krypton", "leia", "matrix", "nexus", "repo"]
+ELEMENTUM_ADDON_ID = "plugin.video.elementum"
+ELEMENTUM_REPOSITORY_DEPENDENCY = "repository.elementumorg"
+PLATFORM_DETECT_COMMIT = "effb836cbe4ea2d71b800ffe2f0ab751a77f188e"
+PLATFORM_DETECT_URL = (
+    "https://github.com/ElementumOrg/platform_detect/archive/"
+    "{}.zip".format(PLATFORM_DETECT_COMMIT)
+)
+PLATFORM_DETECT_SHA256 = "38712e102c5b455966c2c6c548d6aab341c53887681345c33fe9ea709e0d7e74"
 IGNORE = [
     ".git",
     ".github",
@@ -138,8 +148,9 @@ class Generator:
     the checked-out repo.
     """
 
-    def __init__(self, release):
+    def __init__(self, release, addon_folders=None):
         self.release_path = release
+        self.addon_folders = addon_folders
         self.zips_path = os.path.join(self.release_path, "zips")
         addons_xml_path = os.path.join(self.zips_path, "addons.xml")
         md5_path = os.path.join(self.zips_path, "addons.xml.md5")
@@ -206,9 +217,17 @@ class Generator:
             os.makedirs(zip_folder)
 
         final_zip = os.path.join(zip_folder, "{0}-{1}.zip".format(addon_id, version))
-        if not os.path.exists(final_zip):
-            zip = zipfile.ZipFile(final_zip, "w", compression=zipfile.ZIP_DEFLATED)
+        zip_path = final_zip
+        if addon_id == ELEMENTUM_ADDON_ID:
+            zip_path = "{}.tmp".format(final_zip)
+            if os.path.exists(zip_path):
+                os.remove(zip_path)
+
+        if not os.path.exists(zip_path):
+            zip = zipfile.ZipFile(zip_path, "w", compression=zipfile.ZIP_DEFLATED)
             for root, dirs, files in os.walk(addon_folder):
+                dirs.sort()
+                files.sort()
                 # remove any unneeded artifacts
                 for i in IGNORE:
                     if i in dirs:
@@ -223,16 +242,27 @@ class Generator:
                             except:
                                 pass
 
-                archive_root = os.path.join(
-                    addon_id, os.path.relpath(root, addon_folder)
+                relative_root = os.path.relpath(root, addon_folder)
+                archive_root = (
+                    addon_id
+                    if relative_root == "."
+                    else os.path.join(addon_id, relative_root)
                 )
 
                 for f in files:
                     fullpath = os.path.join(root, f)
                     archive_name = os.path.join(archive_root, f)
-                    zip.write(fullpath, archive_name, zipfile.ZIP_DEFLATED)
+                    if addon_id == ELEMENTUM_ADDON_ID and f == "addon.xml":
+                        self._write_elementum_addon_xml(zip, archive_name, fullpath)
+                    else:
+                        zip.write(fullpath, archive_name, zipfile.ZIP_DEFLATED)
+
+            if addon_id == ELEMENTUM_ADDON_ID:
+                self._add_platform_detect(zip, addon_id)
 
             zip.close()
+            if zip_path != final_zip:
+                os.replace(zip_path, final_zip)
             size = convert_bytes(os.path.getsize(final_zip))
             print(
                 "Zip created for {} ({}) - {}".format(
@@ -242,6 +272,70 @@ class Generator:
                 )
             )
 
+    def _remove_elementum_repository_dependency(self, addon_root):
+        """Remove Elementum's optional upstream repository only in published metadata."""
+        requires = addon_root.find("requires")
+        if requires is not None:
+            for dependency in requires.findall("import"):
+                if dependency.get("addon") == ELEMENTUM_REPOSITORY_DEPENDENCY:
+                    requires.remove(dependency)
+
+    def _write_elementum_addon_xml(self, zip_file, archive_name, addon_xml_path):
+        """Write a repository-specific Elementum manifest without changing its source."""
+        addon_xml = ElementTree.parse(addon_xml_path)
+        self._remove_elementum_repository_dependency(addon_xml.getroot())
+        self._write_zip_bytes(
+            zip_file,
+            archive_name,
+            ElementTree.tostring(
+                addon_xml.getroot(), encoding="utf-8", xml_declaration=True
+            ),
+        )
+
+    def _write_zip_bytes(self, zip_file, archive_name, data):
+        """Write generated archive entries with a stable timestamp."""
+        archive_entry = zipfile.ZipInfo(archive_name, (1980, 1, 1, 0, 0, 0))
+        archive_entry.compress_type = zipfile.ZIP_DEFLATED
+        zip_file.writestr(archive_entry, data)
+
+    def _add_platform_detect(self, zip_file, addon_id):
+        """Vendor the pinned upstream platform_detect package into Elementum's ZIP."""
+        with urllib.request.urlopen(PLATFORM_DETECT_URL) as response:
+            platform_detect_archive = response.read()
+
+        archive_hash = hashlib.sha256(platform_detect_archive).hexdigest()
+        if archive_hash != PLATFORM_DETECT_SHA256:
+            raise ValueError("platform_detect archive checksum does not match pinned source")
+
+        with zipfile.ZipFile(io.BytesIO(platform_detect_archive)) as source_zip:
+            source_prefix = "platform_detect-{}/".format(PLATFORM_DETECT_COMMIT)
+            package_paths = ("python/", "libraries/")
+            source_paths = [
+                path
+                for path in source_zip.namelist()
+                if path.startswith(
+                    tuple(source_prefix + package_path for package_path in package_paths)
+                )
+                and not path.endswith("/")
+            ]
+            if not source_paths:
+                raise ValueError("platform_detect archive is missing package files")
+
+            for source_path in sorted(source_paths):
+                relative_path = source_path[len(source_prefix) :]
+                if relative_path.startswith("python/"):
+                    relative_path = relative_path.replace("python/", "", 1)
+                archive_path = os.path.join(
+                    addon_id,
+                    "resources",
+                    "site-packages",
+                    "platform_detect",
+                    relative_path,
+                )
+                self._write_zip_bytes(
+                    zip_file, archive_path, source_zip.read(source_path)
+                )
+
     def _copy_meta_files(self, addon_id, addon_folder):
         """
         Copy the addon.xml and relevant art files into the relevant folders in the repository.
@@ -249,6 +343,7 @@ class Generator:
 
         tree = ElementTree.parse(os.path.join(self.release_path, addon_id, "addon.xml"))
         root = tree.getroot()
+        is_elementum = root.get("id") == ELEMENTUM_ADDON_ID
 
         copyfiles = ["addon.xml"]
         for ext in root.findall("extension"):
@@ -270,7 +365,12 @@ class Generator:
             if not os.path.exists(asset_path):
                 os.makedirs(asset_path)
 
-            shutil.copy(addon_path, zips_path)
+            if is_elementum and file == "addon.xml":
+                addon_xml = ElementTree.parse(addon_path)
+                self._remove_elementum_repository_dependency(addon_xml.getroot())
+                addon_xml.write(zips_path, encoding="utf-8", xml_declaration=True)
+            else:
+                shutil.copy(addon_path, zips_path)
 
     def _generate_addons_file(self, addons_xml_path):
         """
@@ -290,6 +390,7 @@ class Generator:
             and i != "zips"
             and not i.startswith(".")
             and os.path.exists(os.path.join(self.release_path, i, "addon.xml"))
+            and (self.addon_folders is None or i in self.addon_folders)
         ]
 
         addon_xpath = "addon[@id='{}']"
@@ -302,6 +403,9 @@ class Generator:
                 id = addon_root.get('id')
                 version = addon_root.get('version')
 
+                if id == ELEMENTUM_ADDON_ID:
+                    self._remove_elementum_repository_dependency(addon_root)
+
                 updated = False
                 addon_entry = addons_root.find(addon_xpath.format(id))
                 if addon_entry is not None and addon_entry.get('version') != version:
@@ -312,6 +416,11 @@ class Generator:
                     changed = True
                 elif addon_entry is None:
                     addons_root.append(addon_root)
+                    updated = True
+                    changed = True
+
+                if id == ELEMENTUM_ADDON_ID:
+                    # Rebuild the overlaid release even when its source version is unchanged.
                     updated = True
                     changed = True
 
@@ -374,5 +483,6 @@ class Generator:
 
 
 if __name__ == "__main__":
+    addon_folders = set(sys.argv[1:]) or None
     for release in [r for r in KODI_VERSIONS if os.path.exists(r)]:
-        Generator(release)
+        Generator(release, addon_folders)

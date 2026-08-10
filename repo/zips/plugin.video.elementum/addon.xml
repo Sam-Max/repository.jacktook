@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml version='1.0' encoding='utf-8'?>
 <addon id="plugin.video.elementum" name="Elementum" version="0.1.114" provider-name="elgatito">
     <requires>
         <import addon="xbmc.addon" version="16.0.0" />
@@ -31,7 +31,7 @@
         <platform>all</platform>
         <website>http://elementum.surge.sh/</website>
         <source>https://github.com/elgatito/plugin.video.elementum</source>
-        <forum></forum>
+        <forum />
         <license>Non commercial. See https://github.com/elgatito/plugin.video.elementum/blob/master/LICENSE</license>
         <assets>
             <icon>icon.png</icon>
