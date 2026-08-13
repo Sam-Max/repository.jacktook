@@ -544,6 +544,10 @@ Si disfrutas de este addon, por favor considera apoyar el proyecto con una donac
 
 If you enjoy this addon, please consider supporting the project with a donation. Your contributions helps keep improving and maintaining it. Thank you!
 
+## 1.17.0
+- Jacktook: Add TorrServer category browsing and richer torrent metadata, managed-source controls in direct search history, Elementum pack reuse for PlayNext, library-service feedback, Simkl integration, and navigation performance improvements.
+- JackTorr 1.2.2: Add torrent category organization and retain display titles, descriptions, and posters for added torrents.
+
 ## 0.17.0 
 - Add AllDebrid support 
 - Add cached search for AllDebrid 
