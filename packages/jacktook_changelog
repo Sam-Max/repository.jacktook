@@ -1,3 +1,15 @@
+## 1.18.0
+- Jackgram: Add filtered search with separate history, unified Telegram menu and test connection, retry and explicit 401/429 handling, and restore Bearer injection for playback.
+- Easynews: Add paginated searches, filter password-protected and adult posts, filter results by title match, and validate credentials with normalized download URLs.
+- PlayNext: Restore next episode handoff.
+- Elementum: Select matching movie file in multi-file torrents.
+- History: Fix translation crash by coercing label_id to int.
+- General: Replace deprecated UTC datetime usage.
+
+## 1.17.0
+- Jacktook: Add TorrServer category browsing and richer torrent metadata, managed-source controls in direct search history, Elementum pack reuse for PlayNext, library-service feedback, Simkl integration, and navigation performance improvements.
+- JackTorr 1.2.2: Add torrent category organization and retain display titles, descriptions, and posters for added torrents.
+
 ## 1.16.0
 - Stremio: Add configurable addons, channel and genre catalog navigation, and integrated subtitle discovery and playback.
 - Sources: Add filtering by release group and improve Stremio source selection and catalog paging.
@@ -543,10 +555,6 @@ Note:
 Si disfrutas de este addon, por favor considera apoyar el proyecto con una donación. Tus contribuciones ayudan a seguir mejorándolo y manteniéndolo. ¡Gracias!
 
 If you enjoy this addon, please consider supporting the project with a donation. Your contributions helps keep improving and maintaining it. Thank you!
-
-## 1.17.0
-- Jacktook: Add TorrServer category browsing and richer torrent metadata, managed-source controls in direct search history, Elementum pack reuse for PlayNext, library-service feedback, Simkl integration, and navigation performance improvements.
-- JackTorr 1.2.2: Add torrent category organization and retain display titles, descriptions, and posters for added torrents.
 
 ## 0.17.0 
 - Add AllDebrid support 
