@@ -16,17 +16,20 @@ Load when the user requests a repository or submodule update. Support an explici
 - Run commands from the repository root using root-relative paths.
 - Never reset, checkout, stash, or otherwise discard local submodule changes. If they block the update, report the conflict and stop.
 - Preserve unrelated working-tree and staging changes. Do not commit unless the user explicitly requests it.
+- Never pass `--recursive` to a submodule update command. The nested submodule `resources/bin` under `repo/plugin.module.elementum` (elgatito/elementum-binaries) holds ~100MB+ of precompiled elementum binaries, is ignored by elementum's own `.gitignore`, and must not be cloned during an all-submodule update.
 
 ## Decision Gates
 
 | Request | Update command |
 | --- | --- |
-| No submodule target | `git submodule update --remote --recursive` |
+| No submodule target | `git submodule update --remote` |
 | Specific `<submodule_path>` | `git submodule update --remote <submodule_path>` |
+
+Never use `--recursive` — it clones `repo/plugin.module.elementum/resources/bin` (elgatito/elementum-binaries, ~100MB+ of precompiled binaries that elementum's own `.gitignore` ignores). An all-submodule update only advances the six top-level submodule pointers; updating the `repo/plugin.module.elementum` pointer itself is still a plain non-recursive update and needs no special handling.
 
 ## Execution Steps
 
-1. Inspect `git status --short` and `git submodule status --recursive` before updating.
+1. Inspect `git status --short` and `git submodule status --recursive` before updating. `git submodule status --recursive` is fine to *inspect* the nested `resources/bin` state; only the *update* command must never use `--recursive`.
 2. Run the command selected above. Verify the changed submodule pointers afterward.
 3. Check `packages/jacktook_version` and append, never replace, the appropriate changelog entry in `packages/jacktook_changelog` for each updated add-on.
 4. Run `python3 _repo_generator.py` to refresh repository indexes, hashes, and ZIP packages.
