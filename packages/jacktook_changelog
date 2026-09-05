@@ -1,3 +1,9 @@
+## 1.19.0
+- Continue Watching: Paginate the menu with 10 items per page, show the source label in item names, and add a clear-all context action.
+- Playback: Fix resume from Trakt/Simkl Continue Watching by resolving the missing imdb_id and forcing a rescrape, prevent Super Quick Play from overriding an already-resolved source selection and fall back to source select instead of failing silently on auto play.
+- Webserver: Allow manifest hosts resolving to private IPs.
+- Stremio: Avoid unsafe catalog tracking identity.
+
 ## 1.18.0
 - Jackgram: Add filtered search with separate history, unified Telegram menu and test connection, retry and explicit 401/429 handling, and restore Bearer injection for playback.
 - Easynews: Add paginated searches, filter password-protected and adult posts, filter results by title match, and validate credentials with normalized download URLs.
